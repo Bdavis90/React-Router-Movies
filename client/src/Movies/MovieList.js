@@ -3,26 +3,27 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const MovieList = props => {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const getMovies = () => {
-      axios
-        .get("http://localhost:5000/api/movies")
-        .then(response => {
-          console.log("MovieList.js MovieList: response: ", response);
-          setMovies(response.data);
-        })
-        .catch(error => {
-          console.error("Server Error", error);
-        });
-    };
+  console.log("MovieList.js MovieList: props: ", props);
 
-    getMovies();
-  }, []);
+  // const [movies, setMovies] = useState([]);
+  // useEffect(() => {
+  //   const getMovies = () => {
+  //     axios
+  //       .get("http://localhost:5000/api/movies")
+  //       .then(response => {
+  //         setMovies(response.data);
+  //       })
+  //       .catch(error => {
+  //         console.error("Server Error", error);
+  //       });
+  //   };
+
+  //   getMovies();
+  // }, []);
 
   return (
     <div className="movie-list">
-      {movies.map(movie => (
+      {props.movies.map(movie => (
         <Link to={`/movies/${movie.id}`}>
           <MovieDetails key={movie.id} movie={movie} />
         </Link>
